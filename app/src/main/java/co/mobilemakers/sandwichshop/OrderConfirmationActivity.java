@@ -4,15 +4,23 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class OrderConfirmationActivity extends ActionBarActivity {
+
+    TextView mTextViewBread;
+    TextView mTextViewOptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //this.setRequestedOrientation(OrderConfirmationActivity.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_order_confirmation);
+        mTextViewBread = (TextView) findViewById(R.id.text_bread_selected);
+        mTextViewOptions = (TextView) findViewById(R.id.text_options_selected);
+        mTextViewBread.setText(getIntent().getStringExtra("Bread"));
+        mTextViewOptions.setText(getIntent().getStringArrayListExtra("Options").toString());
     }
 
 
