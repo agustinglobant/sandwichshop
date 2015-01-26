@@ -18,7 +18,8 @@
         </activity>
         <activity
             android:name=".OrderConfirmationActivity"
-            android:label="@string/title_activity_order_confirmation" >
+            android:label="@string/title_activity_order_confirmation"
+            android:screenOrientation="landscape">
         </activity>
     </application>
 
