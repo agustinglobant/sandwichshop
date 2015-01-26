@@ -7,5 +7,15 @@
     <string name="rb_white">White</string>
     <string name="rb_rye">Rye</string>
     <string name="text_bread_options">Bread options:</string>
+    <string name="text_topping_options">Topping options:</string>
+    <string name="cb_mozzarella">Mozzarella</string>
+    <string name="cb_cheddar">Cheddar</string>
+    <string name="cb_provolone">Provolone</string>
+    <string name="cb_jalapenos">Jalapenos</string>
+    <string name="cb_olives">Olives</string>
+    <string name="cb_pickles">Pickles</string>
+    <string name="cb_mustard">Mustard</string>
+    <string name="cb_vinegar">Vinegar</string>
+    <string name="cb_barbecue">Barbecue</string>
 
 </resources>
