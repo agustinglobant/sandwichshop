@@ -18,5 +18,7 @@
     <string name="cb_vinegar">Vinegar</string>
     <string name="cb_barbecue">Barbecue</string>
     <string name="button_place_order">Place order</string>
+    <string name="title_activity_order_confirmation">OrderConfirmationActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
