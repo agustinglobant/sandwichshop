@@ -24,6 +24,7 @@ public class OrderFormActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OrderFormActivity.this, OrderConfirmationActivity.class);
+                //intent.putExtra(Intent.);
                 startActivity(intent);
             }
         });

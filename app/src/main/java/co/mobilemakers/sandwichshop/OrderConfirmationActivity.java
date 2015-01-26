@@ -11,6 +11,7 @@ public class OrderConfirmationActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //this.setRequestedOrientation(OrderConfirmationActivity.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_order_confirmation);
     }
 

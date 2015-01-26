@@ -20,5 +20,6 @@
     <string name="button_place_order">Place order</string>
     <string name="title_activity_order_confirmation">OrderConfirmationActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="text_confirmation">You have successfully placed your order</string>
 
 </resources>
