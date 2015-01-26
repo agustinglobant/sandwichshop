@@ -17,5 +17,6 @@
     <string name="cb_mustard">Mustard</string>
     <string name="cb_vinegar">Vinegar</string>
     <string name="cb_barbecue">Barbecue</string>
+    <string name="button_place_order">Place order</string>
 
 </resources>

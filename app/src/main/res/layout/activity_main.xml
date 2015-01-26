@@ -49,7 +49,7 @@
 
     <TableLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="wrap_content">
 
         <TableRow
             android:layout_width="fill_parent"
@@ -129,5 +129,11 @@
                 android:layout_weight="1" />
         </TableRow>
     </TableLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_place_order"
+        android:id="@+id/button_place_order" />
 
 </LinearLayout>
