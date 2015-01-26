@@ -3,5 +3,9 @@
 
     <string name="app_name">Sandwich Shop</string>
     <string name="action_settings">Settings</string>
+    <string name="rb_wheat">Wheat</string>
+    <string name="rb_white">White</string>
+    <string name="rb_rye">Rye</string>
+    <string name="text_bread_options">Bread options:</string>
 
 </resources>
