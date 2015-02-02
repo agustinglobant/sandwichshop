@@ -1,9 +1,11 @@
 package co.mobilemakers.sandwichshop;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,11 +14,16 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
+
+import static co.mobilemakers.sandwichshop.CountSelectionActivity.COUNT_ORDERS;
 
 import java.util.ArrayList;
 
 
 public class OrderFormActivity extends ActionBarActivity {
+    public final static String LOG_TAG = "OrderFormActivity";
+    final static String FORM_STATE = "FORM_STATE";
 
     Button mButtonPlaceOrder;
     RadioButton mRadioButtonWheat, mRadioButtonWhite, mRadioButtonRye;
@@ -24,6 +31,8 @@ public class OrderFormActivity extends ActionBarActivity {
            mCheckBoxOlives, mCheckBoxPickles, mCheckBoxMustard, mCheckBoxVinegar, mCheckBoxBarbecue;
     RadioGroup mRadioGroup;
     ArrayList<String> mOptions = new ArrayList<>();
+    ArrayList<FormState> mArr;
+    int mOrderCount;
 
 
     @Override
@@ -31,21 +40,76 @@ public class OrderFormActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findWidgets();
-        mRadioButtonWhite.setChecked(true);
-        setupCheckBoxs();
+        setupWidgets();
+        setupAndShowOrderCount();
 
-        mButtonPlaceOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(OrderFormActivity.this, OrderConfirmationActivity.class);
-                intent.putExtra("Bread", ((RadioButton) findViewById(mRadioGroup.getCheckedRadioButtonId())).getText());
-                intent.putExtra("Options", mOptions);
-                startActivity(intent);
-            }
-        });
+        if (savedInstanceState != null){
+            mArr = savedInstanceState.getParcelableArrayList(FORM_STATE);
+        } else {
+            mArr = new ArrayList<>();
+        }
+
     }
 
-    private void setupCheckBoxs() {
+    private void setupAndShowOrderCount() {
+        mOrderCount = getIntent().getIntExtra(COUNT_ORDERS,0);
+        Toast.makeText(getApplicationContext(), String.valueOf(mOrderCount), Toast.LENGTH_SHORT).show();
+    }
+
+    public static class FormState implements Parcelable {
+        String bread;
+        ArrayList<String> options = new ArrayList<>();
+
+        public static final Creator<FormState> CREATOR = new Creator<FormState>() {
+            @Override
+            public FormState createFromParcel(Parcel source) {
+                return null;
+            }
+
+            @Override
+            public FormState[] newArray(int size) {
+                return new FormState[size];
+            }
+        };
+
+        public void setBread(String bread) {
+            this.bread = bread;
+        }
+
+        public void setOptions(String option) {
+            this.options.add(option);
+        }
+
+
+        public String getBread() {
+            return bread;
+        }
+
+        public ArrayList<String> getOptions() {
+            return options;
+        }
+
+        private FormState() {
+        }
+
+        private FormState(Parcel source) {
+            this.bread = source.readString();
+            source.readStringList(this.options);
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(bread);
+            dest.writeString(options.toString());
+        }
+    }
+
+    private void setupWidgets() {
         CompoundButton.OnCheckedChangeListener listener = new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -65,6 +129,29 @@ public class OrderFormActivity extends ActionBarActivity {
         mCheckBoxPickles.setOnCheckedChangeListener(listener);
         mCheckBoxProvolone.setOnCheckedChangeListener(listener);
         mCheckBoxVinegar.setOnCheckedChangeListener(listener);
+        mRadioButtonWhite.setChecked(true);
+
+        mButtonPlaceOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                FormState formState = new FormState();
+                formState.setBread(((RadioButton) findViewById(mRadioGroup.getCheckedRadioButtonId())).getText().toString());
+                formState.setOptions(mOptions.toString());
+                mArr.add(formState);
+
+                if (mOrderCount == 1){
+                    intent = new Intent(OrderFormActivity.this, OrderConfirmationActivity.class);
+                } else {
+                    intent = new Intent(OrderFormActivity.this, OrderFormActivity.class);
+                    intent.putExtra(COUNT_ORDERS,mOrderCount-1);
+                }
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList(FORM_STATE, mArr);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
     }
 
     private void findWidgets() {
@@ -105,5 +192,10 @@ public class OrderFormActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 }
