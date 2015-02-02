@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Sandwich Shop</string>
+    <string name="action_settings">Settings</string>
+    <string name="rb_wheat">Wheat</string>
+    <string name="rb_white">White</string>
+    <string name="rb_rye">Rye</string>
+    <string name="text_bread_options">Bread options:</string>
+    <string name="text_topping_options">Topping options:</string>
+    <string name="cb_mozzarella">Mozzarella</string>
+    <string name="cb_cheddar">Cheddar</string>
+    <string name="cb_provolone">Provolone</string>
+    <string name="cb_jalapenos">Jalapenos</string>
+    <string name="cb_olives">Olives</string>
+    <string name="cb_pickles">Pickles</string>
+    <string name="cb_mustard">Mustard</string>
+    <string name="cb_vinegar">Vinegar</string>
+    <string name="cb_barbecue">Barbecue</string>
+    <string name="button_place_order">Place order</string>
+    <string name="title_activity_order_confirmation">OrderConfirmationActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="text_confirmation">You have successfully placed your order</string>
+    <string name="text_bread">Bread:</string>
+    <string name="text_options">Options:</string>
+    <string name="title_activity_count_selection">CountSelectionActivity</string>
+    <string name="text_count_question">How many sandwich do you want to order?</string>
+    <string name="edit_count_orders">5 orders max.</string>
+    <string name="button_start_orders">Start</string>
+
+</resources>
