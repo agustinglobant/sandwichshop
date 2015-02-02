@@ -1,26 +1,43 @@
 package co.mobilemakers.sandwichshop;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import static co.mobilemakers.sandwichshop.OrderFormActivity.FORM_STATE;
+
 
 public class OrderConfirmationActivity extends ActionBarActivity {
 
+
     TextView mTextViewBread;
     TextView mTextViewOptions;
+    ArrayList<String> mAllBreads = new ArrayList<>();
+    ArrayList<String> mAllOptions = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //this.setRequestedOrientation(OrderConfirmationActivity.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_order_confirmation);
-        mTextViewBread = (TextView) findViewById(R.id.text_bread_selected);
+        findWidgets();
+        if (savedInstanceState != null){
+            ArrayList<OrderFormActivity.FormState> forms = getIntent().getExtras().getParcelableArrayList(FORM_STATE);
+            for (OrderFormActivity.FormState form: forms){
+                mAllBreads.add(form.getBread());
+            }
+        }
+
+        mTextViewBread.setText(mAllBreads.toString());
+        mTextViewOptions.setText(mAllOptions.toString());
+    }
+
+    private void findWidgets() {
+        mTextViewBread   = (TextView) findViewById(R.id.text_bread_selected);
         mTextViewOptions = (TextView) findViewById(R.id.text_options_selected);
-        mTextViewBread.setText(getIntent().getStringExtra("Bread"));
-        mTextViewOptions.setText(getIntent().getStringArrayListExtra("Options").toString());
     }
 
 

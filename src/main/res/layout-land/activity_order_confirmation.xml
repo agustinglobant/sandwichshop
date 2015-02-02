@@ -69,5 +69,6 @@
                 android:layout_weight="1"
                 android:paddingLeft="5dp"/>
         </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>
