@@ -14,7 +14,8 @@
         <activity
             android:name=".OrderConfirmationActivity"
             android:label="@string/title_activity_order_confirmation"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:theme="@style/AppThemeFinal">
         </activity>
         <activity
             android:name=".CountSelectionActivity"
